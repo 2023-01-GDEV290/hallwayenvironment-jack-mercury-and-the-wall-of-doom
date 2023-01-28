@@ -21,7 +21,7 @@ public class wallBreak: MonoBehaviour
     void OnTriggerStay(Collider other)
     {
         Debug.Log("T$$anonymous$$s will be called every frame");
-        if (Input.GetKeyDown("space") && other.tag == "player")
+        if (Input.GetKeyDown("e") && other.tag == "player")
         {
             Debug.Log("hit");
         }
