@@ -11,7 +11,7 @@ public class wallBreak: MonoBehaviour
     public int hp = 3;
     public GameObject midWall;
     public bool inRange;
-    public StarterAssetsInputs starterAssets;
+    public MyStarterAssets starterAssets;
     private InputAction wallSmack;
 
 
@@ -23,7 +23,7 @@ public class wallBreak: MonoBehaviour
 
     private void Awake()
     {
-        starterAssets = new StarterAssetsInputs();
+        starterAssets = new MyStarterAssets();
     }
 
     private void OnEnable()
@@ -75,11 +75,11 @@ public class wallBreak: MonoBehaviour
             {
                 animator.SetInteger("Hp", 2);
             }
-            if (animator.GetInteger("Hp") == 2)
+            else if (animator.GetInteger("Hp") == 2)
             {
                 animator.SetInteger("Hp", 1);
             }
-            if (animator.GetInteger("Hp") == 1)
+            else if (animator.GetInteger("Hp") == 1)
             {
                 animator.SetInteger("Hp", 0);
                 Destroy(midWall);
