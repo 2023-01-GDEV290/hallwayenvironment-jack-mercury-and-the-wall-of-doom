@@ -13,6 +13,7 @@ public class wallBreak: MonoBehaviour
     public bool inRange;
     public MyStarterAssets starterAssets;
     private InputAction wallSmack;
+    bool onCooldown = false;
 
 
     // Start is called before the first frame update
@@ -68,6 +69,17 @@ public class wallBreak: MonoBehaviour
 
     private void WallInteract(InputAction.CallbackContext context)
     {
+        if (onCooldown == false)
+        {
+            Invoke("BreakWall", 1f);
+            Invoke("Cooling", 1.5f);
+            playerAnimator.SetTrigger("Swing");
+        }
+        
+    }
+
+    private void BreakWall()
+    {
         if (inRange == true)
         {
             hp--;
@@ -87,6 +99,17 @@ public class wallBreak: MonoBehaviour
 
             Debug.Log("hit");
         }
+    }
+
+    void Cooling()
+    {
+        onCooldown = true;
+        Invoke("CoolOff", 1.5f);
+    }
+
+    void CoolOff()
+    {
+        onCooldown = false;
     }
 
 }
