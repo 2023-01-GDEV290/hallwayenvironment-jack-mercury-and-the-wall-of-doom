@@ -14,6 +14,8 @@ public class wallBreak: MonoBehaviour
     public MyStarterAssets starterAssets;
     private InputAction wallSmack;
     bool onCooldown = false;
+    public AudioSource hammerImpact;
+    public AudioClip impactClip;
 
 
     // Start is called before the first frame update
@@ -71,7 +73,7 @@ public class wallBreak: MonoBehaviour
     {
         if (onCooldown == false)
         {
-            Invoke("BreakWall", 1f);
+            Invoke("BreakWall", .8f);
             Invoke("Cooling", 1.5f);
             playerAnimator.SetTrigger("Swing");
         }
@@ -82,6 +84,7 @@ public class wallBreak: MonoBehaviour
     {
         if (inRange == true)
         {
+            hammerImpact.PlayOneShot(impactClip);
             hp--;
             if (animator.GetInteger("Hp") == 3)
             {
